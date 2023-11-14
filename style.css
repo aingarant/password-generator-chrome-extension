@@ -93,3 +93,7 @@ footer {
 .hidden {
   display: none;
 }
+
+#message {
+  color: #cc0000;
+}

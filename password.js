@@ -1,10 +1,14 @@
+let message = "";
+let length = 16;
+const messageDiv = document.querySelector("#message");
+
 const sliding = () => {
   length = document.querySelector("#length").value;
-  document.querySelector("#pwlength").innerText = length;
   pressed();
 }
 
 const pressed = () => {
+  message = "";
   let randomPassword = '';
   let chars = "";
 
@@ -37,7 +41,8 @@ const pressed = () => {
   }
 
   if (!chars) {
-    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+    chars = "";
+    message = "one of the options must be selected";
   }
 
   let charactersLength = chars.length;
@@ -46,11 +51,12 @@ const pressed = () => {
 
   }
   document.querySelector("#password").value = randomPassword;
+  document.querySelector("#pwlength").innerText = length;
   navigator.clipboard.writeText(randomPassword);
+  messageDiv.innerText = message;
   return randomPassword;
+
 }
-
-
 
 const lowercaseCheckbox = document.getElementById("lowercase").addEventListener("input", pressed);
 
@@ -64,7 +70,7 @@ const slider = document.getElementById("length").addEventListener("input", press
 
 const startButton = document.getElementById('button-generate-password').addEventListener('click', pressed);
 
-
 window.addEventListener("load", () => {
+  document.querySelector("#pwlength").innerText = length;
   pressed();
 });
