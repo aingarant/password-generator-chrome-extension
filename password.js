@@ -8,6 +8,7 @@ const sliding = () => {
 }
 
 const pressed = () => {
+  messageDiv.classList.add("hidden")
   message = ""
   let randomPassword = ""
   let chars = ""
@@ -43,6 +44,7 @@ const pressed = () => {
   if (!chars) {
     chars = ""
     message = "one of the options must be selected"
+    messageDiv.classList.remove("hidden")
   }
 
   let charactersLength = chars.length
@@ -84,6 +86,10 @@ const copyButton = document
   .getElementById("button-copy-password")
   .addEventListener("click", () => {
     navigator.clipboard.writeText(document.querySelector("#password").value)
+
+    messageDiv.innerText = "copied to clipboard"
+    // remove class hidden
+    messageDiv.classList.remove("hidden")
   })
 
 window.addEventListener("load", () => {
